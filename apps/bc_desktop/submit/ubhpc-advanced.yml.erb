@@ -1,0 +1,20 @@
+# bc_desktop//submit/ubhpc-advanced.yml.erb
+---
+script:
+  queue_name: <%= custom_queue %>
+  qos: <%= bc_qos %>
+  email_on_terminated: <%= ! email_on_terminated.to_i.zero? %> <% unless email.blank? %>
+  email: <%= email %> <% end %>
+
+  native:
+    - "-N"
+    - "<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>"
+    - "--ntasks"
+    - "<%= num_cores.blank? ? 1 : num_cores.to_i %>"
+    - "-C"
+    - "<%= node_type %>"
+    - "--mem"
+    - "<%= memory %>"
+    - "--exclude"
+    - "<%= exclude_host %><% unless exclude_host.blank? %><% end %>"
+    - "--job-name=ood-ub-adv" 

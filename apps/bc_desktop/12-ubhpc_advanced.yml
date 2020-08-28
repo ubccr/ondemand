@@ -1,0 +1,64 @@
+---
+title: "Academic Cluster Desktop - Advanced Options"
+description: This app will launch an interactive desktop on one or more compute nodes in the academic (ub-hpc) cluster.  The longest allowable wall time for these nodes is 72 hours (except the debug partition which is 1 hour). It is recommended that you enter only the time you need to run your job rather than use the default. 
+cluster: "ub-hpc"
+submit: "submit/ubhpc-advanced.yml.erb"
+attributes:
+  desktop: "xfce"
+  custom_queue:
+    label: Partition
+    help: Please select a partition from the drop-down menu
+    widget: select
+    options:
+      - [ "debug", "debug" ]
+      - [ "general-compute", "general-compute" ]
+  bc_qos: 
+    label: "QOS"
+    help: "Enter the same as partition name unless you have access to a QOS for a priority boost"
+    widget: select
+    options:
+      - [ "debug", "debug" ]
+      - [ "general-compute", "general-compute" ]
+#  gpu:
+#     label: "Number of GPUs per Node"
+#     help: "Users should request only 1 node with 1 or 2 GPUs until you've tested to ensure all GPUs can be used by your program.  For other specific hardware requirements, use the Node Tags field"
+#     widget: "number_field"
+  email:
+     label: "Preferred email address"
+     help: "Enter the email address you'd like notifications sent to and check whether you want emails sent when your job starts, ends or both"
+     widget: email_field
+  email_on_terminated:
+    label: "I would like to receive an email when the job terminates"
+    widget: check_box
+  num_cores:
+    label: "Number of Cores"
+    help: "Number of cores per node"
+    widget: "number_field"
+  node_type:
+    label: "Node Features"
+    help: "Enter feature(s) for node types you want to access including high speed networks, CPU and GPU types.  Use the command 'snodes' in a terminal window to see available features"
+  memory:
+    label: "Amount of Memory Per Node"
+    help:  "Enter the amount of memory you want to request, per node, in megabytes (MB)."
+    widget: "number_field"
+  exclude_host:
+    label: "Exclude host"
+    help:  "Enter the hostname you'd like to exclude from your job"
+form:
+#  - bc_vnc_idle
+  - desktop
+  - bc_account
+  - custom_queue
+  - bc_qos
+  - bc_num_hours
+  - bc_num_slots
+  - num_cores
+#  - gpu
+  - node_type
+  - memory
+  - exclude_host
+#  - bc_queue
+#  - bc_vnc_resolution
+  - email
+  - bc_email_on_started
+  - email_on_terminated

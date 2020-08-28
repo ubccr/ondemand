@@ -1,0 +1,7 @@
+# bc_desktop/local/submit/opengl.yml.erb
+---
+script:
+  email_on_terminated: <%= ! email_on_terminated.to_i.zero? %> <% unless email.blank? %>
+  email: <%= email %> <% end %>
+
+  native: [ "--job-name=ood-gl", "--exclude=viz-f11-22,viz-k05-28", "--mem=40000", "--nodes=1", "--mincpus=5", "--partition=viz", "--qos=viz" ]

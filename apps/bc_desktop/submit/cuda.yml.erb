@@ -1,0 +1,7 @@
+# bc_desktop/local/submit/cuda.yml.erb
+---
+script:
+  email_on_terminated: <%= ! email_on_terminated.to_i.zero? %> <% unless email.blank? %>
+  email: <%= email %> <% end %>
+
+  native: [ "--job-name=ood-cuda", "--exclude=viz-m22-[03,07,11]", "--gres=gpu:1", "--mem=120000", "--nodes=1", "--mincpus=8", "--partition=viz", "--qos=viz" ]

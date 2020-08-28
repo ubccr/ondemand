@@ -1,0 +1,6 @@
+# bc_desktop/local/submit/rpci.yml.erb
+---
+script:
+  email_on_terminated: <%= ! email_on_terminated.to_i.zero? %> <% unless email.blank? %>
+  email: <%= email %> <% end %>
+  native: [ "--job-name=ood-rpci", "--mem=11687", "--nodes=1", "--mincpus=2", "--partition=rpciviz", "--qos=rpci" ]

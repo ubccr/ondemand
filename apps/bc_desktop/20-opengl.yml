@@ -1,0 +1,39 @@
+---
+title: "OpenGL Viz Desktop"
+description: |
+  WARNING: You may experience long wait times for an OpenGL desktop. This app will launch an
+  OpenGL enabled session on the Remote Visualization nodes.  If you do not require hardware
+  accelerated graphics, the UB-HPC desktop session will likely start much faster than this.
+  The longest allowable wall time for these nodes is 24 hours.  However, you can select
+  less if desired and this will potentially  decrease your wait time.
+cluster: "ub-hpc"
+submit: "submit/opengl.yml.erb"
+attributes:
+  bc_num_hours:
+    value: 2
+  desktop: "opengl"
+  bc_account:
+     label: "Slurm Account"
+     help: "Leave blank unless you have access to more than one"
+  email:
+     label: "Preferred email address"
+     help: "Enter the email address you'd like notifications sent to and check whether you want emails sent when your job starts, ends or both"
+     widget: email_field
+  email_on_terminated:
+    label: "I would like to receive an email when the job terminates"
+    widget: check_box
+  exclude_host:
+    label: "Exclude host"
+    help:  "Enter the hostname you'd like to exclude from your job"
+form:
+#  - bc_vnc_idle
+  - desktop
+  - bc_account
+  - bc_num_hours
+  - exclude_host
+#  - bc_queue
+#  - bc_vnc_resolution
+  - email
+  - bc_email_on_started
+  - email_on_terminated
+

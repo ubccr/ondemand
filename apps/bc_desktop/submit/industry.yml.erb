@@ -1,0 +1,13 @@
+# bc_desktop/submit/industry.yml.erb
+---
+script:
+  email_on_terminated: <%= ! email_on_terminated.to_i.zero? %> <% unless email.blank? %>
+  email: <%= email %> <% end %>
+
+  native:
+    - "-N"
+    - "<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>"
+    - "--job-name=ood-industry"
+    - "--exclusive"
+    - "--partition=industry"
+    - "--qos=industry"
